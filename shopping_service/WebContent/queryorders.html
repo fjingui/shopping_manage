@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/ordercss.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<script type="text/javascript">
+//加载默认日期
+function curday(){
+	var begindate = document.getElementById("begindate");
+	var enddate = document.getElementById("enddate");
+	var date = new Date();
+	var dateString = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+	begindate.value=dateString;
+	enddate.value=dateString;
+	 }
+$(function () { 
+	curday();
+})
+//查询数据
+$(function () { 
+	  $("button").click(function(){
+	  $.getJSON("manage/queryallorders",
+		  {begindate: $("input:first").val(),
+		  enddate:$("input:last").val()},
+		 function(data){  
+			  var trs="";
+		//	  var jdata=eval("("+data+")");
+			  $.each(data,function(n,value){
+				  var imgsrc=value.factory_log.replace("10.0.2.2","localhost");
+			  trs+="<tr><td><img src="+imgsrc+" width=50 height=30/> </td> <td>"+value.cust_acct+"</td><td>"+value.cust_name+"</td><td>"+value.cust_address+"</td><td>"+value.cust_contact_nbr+"</td>"
+			  +"<td>"+value.factory_name+"</td> <td>"+value.factory_addr+"</td><td>"+value.product_name+"</td><td>"+value.product_price+"</td><td>"+value.order_amount+"</td>"
+			  +"<td>"+value.price_unit+"</td> <td>"+value.order_money+"</td> <td>"+value.order_time+"</td></tr>";
+			  })
+		  $("tbody").empty().append(trs);
+		  }) 
+})
+	})
+</script>
+
+<body >
+<div class="select">
+<label id="begin">开始时间</label>
+<input type="date" for label="begin" id="begindate">
+&nbsp;&nbsp;&nbsp;
+<label id="end">结束时间</label>
+<input type="date" for label="end" id="enddate">
+&nbsp;&nbsp;&nbsp;
+<button class="btn btn-info" id="selord">查询</button>
+</div>
+
+<div class="result">
+<table class="table table-hover " > 
+<thead><tr><th>商品图标</th><th>客户账号</th><th>客户名</th> <th>客户地址</th> <th>客户联系号码</th><th>厂家名称</th>
+<th>厂家地址</th><th>商品名称</th><th>商品价格</th><th>订购数量</th><th>价格单位</th><th>总金额</th><th>订购时间</th></tr></thead>
+<tbody >
+
+</tbody>
+</table>
+</div> 
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+<package name="fjg" namespace="/shopping" extends="struts-default">
+<action name="selleraction" class="com.shopping.action.SellerAction" >
+<result name="success" >/test.jsp</result>
+</action>
+</package>
+
+<package name="query" namespace="/json" extends="struts-default,json-default">
+
+<action name="sellerjson" class="com.shopping.action.SellerAction" method="queryData">
+<result name="success" type="json">
+<param name="root">jarry</param>
+</result>
+</action>
+
+<action name="limitseller" class="com.shopping.action.LimitSellerAction" method="getLimitData">
+<result name="success" type="json">
+<param name="root">limitjson</param>
+</result>
+</action>
+
+<action name="orderjson" class="com.shopping.action.SaleOrder" >
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json"></result>
+</action>
+
+<action name="neworder" class="com.shopping.action.NewOrder" >
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+<action name="newcust" class="com.shopping.action.NewCust" >
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+<action name="newcust_*" class="com.shopping.action.NewCust" method="{1}">
+</action>
+
+<action name="requestorder" class="com.shopping.action.RequestOrder" method="queryOrder">
+<result name="success" type="json">
+<param name="root">orderjson</param>
+</result>
+</action>
+
+<action name="requestcust_*" class="com.shopping.action.RequestCust" method="{1}">
+<result name="cust" type="json">
+<param name="root">userjson</param>
+</result>
+
+<result name="custlist" type="json">
+<param name="root">userlistjson</param>
+</result>
+</action>
+
+<action name="order_*" class="com.shopping.action.DelOrder" method="{1}">
+<result type="stream" >
+<param name="contentType">text/html</param>  
+<param name="inputName">inputstream</param>
+</result>
+</action>
+
+<action name="userlogin" class="com.shopping.action.UserLogin" method="checkUser">
+<result type="stream" >
+<param name="contentType">text/html</param>  
+<param name="inputName">inputstream</param> 
+</result>
+</action>
+
+</package>
+
+<!-- <include file="mana-struts.xml"></include> -->
+<!-- <package name="manageshop" namespace="/manage" extends="struts-default">
+<action name="queryallorders" class="com.manage.action.QueryAllOrders" method="queryAllOrders">
+<result name="success" type="json">
+<param name="root">allorderjson</param>
+</result>
+</action>
+
+<action name="fac_*" class="com.manage.action.ManageFactory" method="{1}">
+<result name="select" type="json">
+<param name="root">faclistjson</param>
+</result>
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+<action name="pro_*" class="com.manage.action.ManageProduct" method="{1}">
+<result name="select" type="json">
+<param name="root">prolistjson</param>
+</result>
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+<action name="proimg_*" class="com.manage.action.ManageProductImg" method="{1}">
+<result name="select" type="json">
+<param name="root">proimgjson</param>
+</result>
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+</package> -->
+
+</struts>

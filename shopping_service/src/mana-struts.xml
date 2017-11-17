@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+ <package name="manageshop" namespace="/manage" extends="struts-default,json-default">
+ <action name="queryallorders" class="com.manage.action.QueryAllOrders" method="queryAllOrders">
+<result name="success" type="json">
+<param name="root">allorderjson</param>
+</result>
+</action> 
+
+<action name="fac_*" class="com.manage.action.ManageFactory" method="{1}">
+<result name="select" type="json">
+<param name="root">faclistjson</param>
+</result>
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+<action name="pro_*" class="com.manage.action.ManageProduct" method="{1}">
+<result name="select" type="json">
+<param name="root">prolistjson</param>
+</result>
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+<action name="proimg_*" class="com.manage.action.ManageProductImg" method="{1}">
+<result name="select" type="json">
+<param name="root">proimgjson</param>
+</result>
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json">
+</result>
+</action>
+
+</package> 
+
+</struts>
