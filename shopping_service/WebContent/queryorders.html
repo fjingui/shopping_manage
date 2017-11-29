@@ -32,6 +32,7 @@ $(function () {
 		//	  var jdata=eval("("+data+")");
 			  $.each(data,function(n,value){
 				  var imgsrc=value.factory_log.replace("10.0.2.2","localhost");
+				  console.log(value.factory_name);
 			  trs+="<tr><td><img src="+imgsrc+" width=50 height=30/> </td> <td>"+value.cust_acct+"</td><td>"+value.cust_name+"</td><td>"+value.cust_address+"</td><td>"+value.cust_contact_nbr+"</td>"
 			  +"<td>"+value.factory_name+"</td> <td>"+value.factory_addr+"</td><td>"+value.product_name+"</td><td>"+value.product_price+"</td><td>"+value.order_amount+"</td>"
 			  +"<td>"+value.price_unit+"</td> <td>"+value.order_money+"</td> <td>"+value.order_time+"</td></tr>";

@@ -15,8 +15,9 @@ import com.shopping.bean.User;
 
 public class ManageFactory implements ModelDriven<Factory> {
 	
-	private Factory fac;
+	private Factory fac=new Factory();
 	private String facname;
+	private String facacct;
 	private List<Factory> faclist=new ArrayList<Factory>();
 	private JSONArray faclistjson=new JSONArray();
 	
@@ -27,50 +28,83 @@ public class ManageFactory implements ModelDriven<Factory> {
 	}
 
 	public String selectFactory() throws Exception{
-	    ResultSet rs;
-		String sql1="SELECT factory_id,factory_acct,factory_name,factory_addr,fac_contact_nbr,join_date,"
-				+ "factory_log,COMMENT FROM 商家  "
-				+ "WHERE factory_name LIKE  "+"\'%"+facname+"%\'";
-		String sql2="SELECT factory_id,factory_acct,factory_name,factory_addr,fac_contact_nbr,join_date,"
-				+ "factory_log,COMMENT FROM 商家  ";
+	    ResultSet rs=null;
+		String sql11="SELECT distinct factory_id,factory_acct,factory_name,factory_addr,fac_contact_nbr,"
+				+ "factory_log,comment FROM 商家  "
+				+ "WHERE factory_acct = "+facacct;
+		String sql12="SELECT distinct factory_id,factory_acct,factory_name,factory_addr,fac_contact_nbr,"
+				+ "factory_log,comment FROM 商家  "
+				+ "WHERE factory_name = "+"\""+facname+"\"";
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
+		
 		if (facname!=null){
-		 rs=st.executeQuery(sql1);
-		}else {
-		 rs=st.executeQuery(sql2);
+		 rs=st.executeQuery(sql12);
+		}else if(facacct!=null){
+		 rs=st.executeQuery(sql11);
 		}
+		
 		while (rs.next()){
 		Factory fac= new Factory();
 		fac.setFactory_id(rs.getInt("factory_id"));
-		fac.setFactory_acct(rs.getInt("factory_acct"));
+		fac.setFactory_acct(rs.getLong("factory_acct"));
 		fac.setFactory_name(rs.getString("factory_name"));
 		fac.setFactory_addr(rs.getString("factory_addr"));
 		fac.setFac_contact_nbr(rs.getLong("fac_contact_nbr"));
-		fac.setJoin_date(rs.getDate("join_date"));
 		fac.setFactory_log(rs.getString("factory_log"));
-		fac.setComment(rs.getString("COMMENT"));
+		fac.setComment(rs.getString("comment"));
 		faclist.add(fac);
 		}
 		faclistjson=JSONArray.fromObject(faclist);
+		return "success";
+	}
+	public String selectAllFactory() throws Exception{
+	    ResultSet rs;
+		String sql21="SELECT distinct factory_id,factory_acct,factory_name,factory_addr,fac_contact_nbr,"
+				+ "factory_log,comment FROM 商家  "
+				+ "WHERE factory_name like "+"\"%"+facname+"%\"";
+		String sql22="SELECT distinct factory_id,factory_acct,factory_name,factory_addr,fac_contact_nbr,"
+				+ "factory_log,comment FROM 商家  ";
+		Connection conn= MySqlConn.getConnection();
+		Statement st = (Statement) conn.createStatement();
+
+		if (facname!=null){
+			 rs=st.executeQuery(sql21);
+			}else {
+			 rs=st.executeQuery(sql22);
+			}
 		
-		return "select";
+		while (rs.next()){
+		Factory fac= new Factory();
+		fac.setFactory_id(rs.getInt("factory_id"));
+		fac.setFactory_acct(rs.getLong("factory_acct"));
+		fac.setFactory_name(rs.getString("factory_name"));
+		fac.setFactory_addr(rs.getString("factory_addr"));
+		fac.setFac_contact_nbr(rs.getLong("fac_contact_nbr"));
+		fac.setFactory_log(rs.getString("factory_log"));
+		fac.setComment(rs.getString("comment"));
+		faclist.add(fac);
+		}
+		faclistjson=JSONArray.fromObject(faclist);
+		System.out.println(faclistjson);
+		return "success";
 	}
 	public String insertFactory() throws Exception{
-		 String sql="INSERT INTO 商家(factory_name,factory_addr,fac_contact_nbr,factory_log,COMMENT,factory_acct) "
-	        		+ "VALUES ("+fac.getFactory_name()+","+fac.getFactory_addr()+","
-				 +fac.getFac_contact_nbr()+","+fac.getFactory_log()+","+fac.getComment()+","+fac.getFactory_acct()+")";
-			Connection conn= MySqlConn.getConnection();
+		 String sql="INSERT INTO 商家(factory_name,factory_addr,fac_contact_nbr,factory_log,comment,factory_acct) "
+	        		+ "VALUES ("+"\'"+fac.getFactory_name()+"\'"+","+"\'"+fac.getFactory_addr()+"\'"+","
+				 +fac.getFac_contact_nbr()+","+"\'"+fac.getFactory_log()+"\'"+","+"\'"+fac.getComment()+"\'"+","+fac.getFactory_acct()+")";
+		 Connection conn= MySqlConn.getConnection();
 			Statement st = (Statement) conn.createStatement();
 			st.executeUpdate(sql);
 			MySqlConn.realseConn(conn, st);
-			
 		return "success";
 	}
 	public String updateFactory() throws Exception{
-		String sql="UPDATE 商家 SET factory_name="+fac.getFactory_name()+","+"factory_addr="+fac.getFactory_addr()+","
+		String sql="UPDATE 商家  SET factory_name="+fac.getFactory_name()+","+"factory_addr="+fac.getFactory_addr()+","
 				+ "fac_contact_nbr="+fac.getFac_contact_nbr()+","+"COMMENT="+fac.getComment()+","+"factory_log="+fac.getFactory_log()
 						+ " WHERE factory_id="+fac.getFactory_id();
+		System.out.println(sql);
+		System.out.println(fac.getComment());
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		st.executeUpdate(sql);
@@ -89,6 +123,10 @@ public class ManageFactory implements ModelDriven<Factory> {
 
 	public void setFacname(String facname) {
 		this.facname = facname;
+	}
+
+	public void setFacacct(String facacct) {
+		this.facacct = facacct;
 	}
 	
 }

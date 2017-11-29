@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/selfaccss.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<script type="text/javascript">
+$(function () { 
+	  $("button").click(function(){
+	  $.getJSON("manage/fac_selectAllFactory",
+		  {facname: $("#facname").val()},
+		 function(data){  
+			  var trs="";
+		//	  var jdata=eval("("+data+")");
+			  $.each(data,function(n,value){
+				  var imgsrc=value.factory_log.replace("10.0.2.2","localhost");
+			  trs+="<tr><td><img src="+imgsrc+" width=50 height=30/> </td> <td>"+value.factory_id+"</td><td>"
+			  +value.factory_acct+"</td><td>"+value.factory_name+"</td><td>"+value.factory_addr+"</td>"
+			  +"<td>"+value.fac_contact_nbr+"</td> <td>"+value.comment+"</td></tr>";
+			  })
+		  $("tbody").empty().append(trs);
+		  }) 
+})
+	})
+	</script>
+<body>
+<div class="select">
+<input type="text" placeholder="输入名称查询"  id="facname">
+&nbsp;&nbsp;&nbsp;
+<button class="btn btn-info btn-sm" id="selord">搜索一下</button>
+</div>
+
+<div class="result">
+<table class="table table-hover " > 
+<thead><tr><th>商家图标</th><th>商家ID</th><th>商家账号</th> <th>商家名称</th> <th>商家地址</th><th>商家联系号码</th>
+<th>商家介绍</th></tr></thead>
+<tbody >
+
+</tbody>
+</table>
+</div> 
+</body>
+</html>

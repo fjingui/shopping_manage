@@ -5,11 +5,10 @@ import java.util.Date;
 public class Factory {
 
 	private int factory_id;
-	private int factory_acct;
+	private Long factory_acct;
 	private String factory_name;
 	private String factory_addr;
 	private Long fac_contact_nbr;
-	private Date join_date;
 	private String factory_log;
 	private String comment;
 	
@@ -49,16 +48,11 @@ public class Factory {
 	public void setFactory_id(int factory_id) {
 		this.factory_id = factory_id;
 	}
-	public Date getJoin_date() {
-		return join_date;
-	}
-	public void setJoin_date(Date join_date) {
-		this.join_date = join_date;
-	}
-	public int getFactory_acct() {
+
+	public Long getFactory_acct() {
 		return factory_acct;
 	}
-	public void setFactory_acct(int factory_acct) {
+	public void setFactory_acct(Long factory_acct) {
 		this.factory_acct = factory_acct;
 	}
 	

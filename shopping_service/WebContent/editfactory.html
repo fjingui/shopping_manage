@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/editfac.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-form.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<script>
+$(function () { 
+	  $("#selfac").click(function(){
+		  var varname="";
+		  if($("select option:selected").val()=="商户名称"){
+			  varname={facname: $("#selectvalue").val()};
+		  }else if ($("select option:selected").val()=="商户账号"){
+		  varname={facacct: $("#selectvalue").val()};
+	  }
+		 console.log(varname);
+	  $.getJSON("manage/fac_selectFactory",
+		  varname,
+		 function(data){  
+		  $.each(data,function(n,value){
+			  $("#log").empty().val(value.factory_log);
+			  $("#id").empty().val(value.factory_id);
+			  $("#acct").empty().val(value.factory_acct);
+			  $("#name").empty().val(value.factory_name);
+			  $("#addr").empty().val(value.factory_addr);
+			  $("#nbr").empty().val(value.fac_contact_nbr);
+			  $("#comment").empty().val(value.comment); 
+		  })	  
+		  })
+		  })
+	})
+	
+	function updateform(){
+	$('#editfac').ajaxSubmit(function(){
+		alert("更新商户成功");
+		window.location.href = "http://localhost:8080/shopping_service/editfactory.html"
+		//$(this).resetForm();
+	})
+	return false;
+}
+</script>
+<body>
+<div>
+<select style="height:30px;">
+<option>商户名称</option>
+<option>商户账号</option>
+</select>
+<input type="text" id="selectvalue" style="eight:30px;width:30%"></text>
+&nbsp;&nbsp;&nbsp;
+<button class="btn btn-info" id="selfac">查询</button>
+</div>
+
+<div class="editform">
+<form action="manage/fac_updateFactory" method="post" id ="editfac">
+<center><h4>更新商户资料</h4></center>
+<div class="form-group">
+<label>商家图标：</label>
+<input type=text  id="log" name="factory_log">
+</div>
+<div class="form-group">
+<label>商家ID：</label>
+<input type=text id="id" name="factory_id" placeholder="不可更新" readonly="true">
+</div>
+<div class="form-group">
+<label>商家账号：</label>
+<input type=text id="acct" name="factory_acct" placeholder="不可更新" readonly="true">
+</div>
+<div class="form-group">
+<label>商家名称：</label>
+<input type=text  id="name" name="factory_name">
+</div >
+<div class="form-group">
+<label>商家地址：</label>
+<input type=text id="addr" name="factory_addr">
+</div>
+<div class="form-group">
+<label>商家联系号码：</label>
+<input type="text" id="nbr" name="fac_contact_nbr">
+</div>
+<div class="form-group">
+<label>商家介绍：</label>
+<input type=text id="comment" name="comment">
+</div>
+<center><button type="submit" class="btn btn-primary" onclick="return updateform()">更新商户</button></center>
+</form>
+</div> 
+
+</body>
+</html>

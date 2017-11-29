@@ -27,12 +27,10 @@ public class QueryAllOrders {
 				+"FROM 订单 a LEFT JOIN 商品 b ON (a.product_id=b.product_id) LEFT JOIN 商家 c ON (b.factory_id=c.factory_id) LEFT JOIN "
                 +"(SELECT * FROM 客户 WHERE checked=1 ) d ON (a.cust_acct=d.cust_acct) "
                 + "WHERE a.order_status='已验收' AND DATE_FORMAT(a.order_time,'%Y%m%d') BETWEEN " + begindate2 +" AND "+ enddate2 ;
-		System.out.println(sql);
 		Connection conn = MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		ResultSet rs = st.executeQuery(sql); 
 		while (rs.next()) {
-			System.out.println("到1位");
 			WholeOrder order = new WholeOrder();
 			order.setCust_acct(rs.getString("cust_acct"));
 			order.setCust_name(rs.getString("cust_name"));
@@ -49,9 +47,7 @@ public class QueryAllOrders {
 			order.setOrder_money(rs.getFloat("order_money"));
 			order.setOrder_time(rs.getString("order_time"));
 			allorders.add(order);
-			System.out.println("到2位");
 		}
-		System.out.println(allorders.get(1).toString());
 		allorderjson = JSONArray.fromObject(allorders);
 		System.out.println(allorderjson.toString());
 		MySqlConn.realseConn(conn, st);

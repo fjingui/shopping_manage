@@ -10,6 +10,22 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </head>
+<script type="text/javascript">
+$(function(){
+	$("#queryorder").click(function(){
+		$("#content").load("queryorders.html");
+	})
+	$("#addfactory").click(function(){
+		$("#content").load("addfactory.html");
+	})
+		$("#editfactory").click(function(){
+		$("#content").load("editfactory.html");
+	})
+		$("#selfactory").click(function(){
+		$("#content").load("selectfactory.html");
+	})
+})
+</script>
 <body>
 
 <div class="header">
@@ -30,7 +46,7 @@
      
      <li id="item2"><a href="#">数据管理</a>
         <ul > 订单管理
-          <li><a href="#">订单查询</a>
+          <li><a href="#" id="queryorder">订单查询</a>
         </ul>
         <ul >销售品管理
           <li><a href="#">添加销售品</a> </li>
@@ -41,8 +57,9 @@
           <li><a href="#">删除图片</a> </li>
         </ul>
         <ul >商家管理
-          <li><a href="#">添加商家</a> </li>
-          <li><a href="#">修改商家</a> </li>
+        <li><a href="#" id="selfactory">查询商家</a> </li>
+          <li><a href="#" id="addfactory">添加商家</a> </li>
+          <li><a href="#" id="editfactory">修改商家</a> </li>
         </ul>
          <ul >用户资料管理
           <li><a href="#">修改用户资料</a> </li>
@@ -53,7 +70,7 @@
    </ul>
   </div>
   
- <div id="content"><a href="#"></a> </div> 
+ <div id="content"></div> 
 
 </body>
 </html>

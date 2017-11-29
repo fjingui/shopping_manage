@@ -6,6 +6,10 @@
 <struts>
 
  <package name="manageshop" namespace="/manage" extends="struts-default,json-default">
+ <global-results>
+<result>/test.jsp</result>
+</global-results>
+
  <action name="queryallorders" class="com.manage.action.QueryAllOrders" method="queryAllOrders">
 <result name="success" type="json">
 <param name="root">allorderjson</param>
@@ -13,13 +17,8 @@
 </action> 
 
 <action name="fac_*" class="com.manage.action.ManageFactory" method="{1}">
-<result name="select" type="json">
+<result name="success" type="json">
 <param name="root">faclistjson</param>
-</result>
-<interceptor-ref name="json">
-<param name="contentType">application/json</param>
-</interceptor-ref>
-<result type="json">
 </result>
 </action>
 

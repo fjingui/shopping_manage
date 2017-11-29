@@ -1,0 +1,4 @@
+@CHARSET "UTF-8";
+.editform{width:70%;margin:3px auto ;border:1px solid}
+form{width:90%; margin:10px;text-align:right;line-height:36px}
+textarea,input{width:80%}

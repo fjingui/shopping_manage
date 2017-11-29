@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/addfac.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-form.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<script>
+function checkform(){
+	$('#addfac').ajaxSubmit(function(){
+		alert("添加商户成功");
+		window.location.href = "http://localhost:8080/shopping_service/addfactory.html"
+		//$(this).resetForm();
+	})
+	return false;
+}
+</script>
+<body>
+<div class="addform">
+<form id="addfac" action="manage/fac_insertFactory" method="post">
+<center><h4>新增商户表单</h4></center>
+<div class="form-group">
+<label>☆ 商家名称：</label>
+<input type=text name="factory_name" >
+</div>
+<div class="form-group">
+<label>☆ 商家地址：</label>
+<input type=text name="factory_addr" >
+</div>
+<div class="form-group">
+<label>☆ 商家电话：</label>
+<input type=text name="fac_contact_nbr" >
+</div >
+<div class="form-group">
+<label>☆ 商家链接图标：</label>
+<input type=text name="factory_log" >
+</div>
+<div class="form-group">
+<label for name="comment">☆ 商家介绍：</label>
+<input type="text" name="comment" >
+</div>
+<div class="form-group">
+<label>☆ 商家账号：</label>
+<input type=text name="factory_acct" placeholder="使用手机号码" >
+</div>
+<center><button type="submit" class="btn btn-primary" onclick="return checkform()">添加商户</button></center>
+<p style="text-align:left">
+说明：1、商家链接图标为存放的绝对路径，如：http://10.0.2.2:8080/shopping_service/img/mv150.jpg。<br>
+2、账号使用商家主要手机号码。<br>
+3、珍藏拍卖商品，商家名称统一为”拍卖珍藏“。
+</p>
+</form>
+</div>
+</body>
+</html>
