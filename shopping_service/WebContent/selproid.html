@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/editfac.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-form.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<script>
+$(function () { 
+	  $("#query").click(function(){
+	  $.getJSON("manage/pro_selectProduct",
+		{proname:$("#selectvalue").val()},
+		 function(data){  
+			var trs="";
+		  $.each(data,function(n,value){
+			  trs+="<option>"+value.product_id+"</option>";
+		  })
+		  $("select").empty().append(trs);
+		  })
+		  })
+	})
+</script>
+<body>
+<div>
+<label style="height:30px;">销售品名称</label>
+<input type="text" id="selectvalue" style="height:30px;width:30%">
+&nbsp;&nbsp;&nbsp;
+<button class="btn btn-info" id="query">查询</button>
+</div>
+<label>销售品ID</label>
+<select>
+</select>
+</body>
+</html>

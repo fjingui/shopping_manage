@@ -12,6 +12,10 @@
 </head>
 <script type="text/javascript">
 $(function(){
+	$("#content").load("homeback.html");
+	$("#home").click(function(){
+		$("#content").load("homeback.html");
+	});
 	$("#queryorder").click(function(){
 		$("#content").load("queryorders.html");
 	})
@@ -24,13 +28,25 @@ $(function(){
 		$("#selfactory").click(function(){
 		$("#content").load("selectfactory.html");
 	})
+	$("#addproduct").click(function(){
+		$("#content").load("addproduct.html");
+	})
+	$("#updateproduct").click(function(){
+		$("#content").load("editproduct.html");
+	})
+	$("#addproimg").click(function(){
+		$("#content").load("addproimg.html");
+	})
+	$("#delproimg").click(function(){
+		$("#content").load("delproimg.html");
+	})
 })
 </script>
 <body>
 
 <div class="header">
 	<div class="header_left"> 
-		<div class="logo"><img src="img/logo.jpg" /></div> 
+		<div class="logo"><img src="img/tree.png" /></div> 
     	<div class="title">农特产品销售管理平台</div>
     </div>
 	<div class="header_right">    	   
@@ -42,19 +58,19 @@ $(function(){
 <div id="navbar" class="nav-menu">
    <ul id="menus" class="">
    
-     <li id="item1"><a href="#">首页</a></li>
+     <li id="item1"><a href="#" id="home">首页</a></li>
      
      <li id="item2"><a href="#">数据管理</a>
         <ul > 订单管理
           <li><a href="#" id="queryorder">订单查询</a>
         </ul>
         <ul >销售品管理
-          <li><a href="#">添加销售品</a> </li>
-          <li><a href="#">修改销售品</a> </li>
+          <li><a href="#" id="addproduct">添加销售品</a> </li>
+          <li><a href="#" id="updateproduct">修改销售品</a> </li>
         </ul>
          <ul >销售品图片管理
-          <li><a href="#">添加图片</a> </li>
-          <li><a href="#">删除图片</a> </li>
+          <li><a href="#" id="addproimg">添加图片</a> </li>
+          <li><a href="#" id="delproimg">删除图片</a> </li>
         </ul>
         <ul >商家管理
         <li><a href="#" id="selfactory">查询商家</a> </li>
@@ -70,7 +86,7 @@ $(function(){
    </ul>
   </div>
   
- <div id="content"></div> 
+ <div id="content" class="mainshow"></div> 
 
 </body>
 </html>

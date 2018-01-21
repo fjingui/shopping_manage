@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/selfaccss.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<script type="text/javascript">
+ function selproimgs() { 
+		  console.log($("#selproid").val());
+	  $.getJSON("manage/manage/proimg_selectProImg",
+		  {productid: $("#selproid").val()},
+		 function(data){  
+			  var trs="";
+		//	  var jdata=eval("("+data+")");
+			  $.each(data,function(n,value){
+				  var imgsrc=value.pro_img_addr.replace("10.0.2.2","localhost");
+			  trs+="<tr><td>"+value.product_id+"</td><td>"+value.pro_img_id+"</td><td><img src="+imgsrc+" width=50 height=30/> </td> <td>"
+			  +value.pro_img_desc+"</td></tr>";
+			  })
+		  $("tbody").empty().append(trs);
+		  }) 
+	} 
+	</script>
+<body>
+<div class="select">
+<input type="text" placeholder="输入销售品ID"  id="selproid">
+&nbsp;&nbsp;&nbsp;
+<button class="btn btn-info btn-sm" onclick="selproimgs()">搜索一下</button>
+</div>
+
+<div class="result">
+<table class="table table-hover " > 
+<thead><tr><th>销售品ID</th><th>图ID</th><th>图片</th> <th>图片描述</th></tr></thead>
+<tbody >
+
+</tbody>
+</table>
+</div> 
+</body>
+</html>

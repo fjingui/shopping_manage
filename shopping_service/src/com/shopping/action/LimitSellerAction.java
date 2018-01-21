@@ -9,7 +9,7 @@ import net.sf.json.JSONArray;
 
 import com.mysql.cj.api.jdbc.Statement;
 import com.mysql.conn.MySqlConn;
-import com.shopping.bean.Pro_Img;
+import com.shopping.bean.ProImg;
 import com.shopping.bean.Seller;
 
 public class LimitSellerAction {
@@ -29,7 +29,7 @@ public class LimitSellerAction {
 		while(rs.next()) {
 			
 			if(sellbean!=null && sellbean.getFactory_id() == rs.getInt("factory_id")) {
-				sellbean.getPro_imgs().add(new Pro_Img(rs.getString("pro_img_addr"),rs.getString("pro_img_desc")));
+				sellbean.getPro_imgs().add(new ProImg(rs.getString("pro_img_addr"),rs.getString("pro_img_desc")));
 				continue;
 			}
 			if(sellbean !=null ){
@@ -50,7 +50,7 @@ public class LimitSellerAction {
 				sellbean.setProduct_price(rs.getFloat("product_price"));
 				sellbean.setPrice_unit(rs.getString("price_unit"));
 				sellbean.setProduct_desc(rs.getString("product_desc"));
-				sellbean.getPro_imgs().add(new Pro_Img(rs.getString("pro_img_addr"),rs.getString("pro_img_desc")));
+				sellbean.getPro_imgs().add(new ProImg(rs.getString("pro_img_addr"),rs.getString("pro_img_desc")));
 				if (rs.isLast()){
 					limitlist.add(sellbean);
 				}

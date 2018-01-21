@@ -3,8 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/addfac.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-form.js"></script>
+<script src="js/bootstrap.js"></script>
 </head>
+<script>
+function checkform(){
+	$('#addpro').ajaxSubmit(function(){
+		alert("添加销售品成功");
+		//$(this).resetForm();
+	})
+	$('#addpro').resetForm();
+	return false;
+}
+</script>
 <body>
-
+<div class="addform">
+<form id="addpro" action="manage/pro_insertProduct" method="post">
+<center><h4>新增销售品</h4></center>
+<div class="form-group">
+<label>☆ 销售品名称：</label>
+<input type=text name="product_name" >
+</div>
+<div class="form-group">
+<label>☆ 销售品价格：</label>
+<input type=text name="product_price" >
+</div>
+<div class="form-group">
+<label>☆ 价格单位：</label>
+<input type=text name="price_unit" >
+</div >
+<div class="form-group">
+<label>☆ 销售品状态：</label>
+<input type=text name="sale_state" value="在售">
+</div>
+<div class="form-group">
+<label for name="comment">☆ 销售品描述：</label>
+<input type="text" name="product_desc" >
+</div>
+<div class="form-group">
+<label>☆ 商家ID：</label>
+<input type=text name="factory_id" placeholder="可在商家查询里面查看" >
+</div>
+<center><button type="submit" class="btn btn-primary" onclick="return checkform()">添加销售品</button></center>
+<p style="text-align:left">
+说明：1、新增销售品状态统一为"在售"。<br>
+2、商家ID可在商家查询里面查看。<br>
+</p>
+</form>
+</div>
 </body>
 </html>

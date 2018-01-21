@@ -23,24 +23,14 @@
 </action>
 
 <action name="pro_*" class="com.manage.action.ManageProduct" method="{1}">
-<result name="select" type="json">
+<result name="success" type="json">
 <param name="root">prolistjson</param>
-</result>
-<interceptor-ref name="json">
-<param name="contentType">application/json</param>
-</interceptor-ref>
-<result type="json">
 </result>
 </action>
 
 <action name="proimg_*" class="com.manage.action.ManageProductImg" method="{1}">
-<result name="select" type="json">
+<result name="success" type="json">
 <param name="root">proimgjson</param>
-</result>
-<interceptor-ref name="json">
-<param name="contentType">application/json</param>
-</interceptor-ref>
-<result type="json">
 </result>
 </action>
 

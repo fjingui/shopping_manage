@@ -1,4 +1,4 @@
 @CHARSET "UTF-8";
 .addform{width:70%;margin:3px auto ;border:1px solid}
 form{width:90%; margin:10px;text-align:right;line-height:36px}
-textarea,input{width:80%}
+textarea,text,input{width:80%}

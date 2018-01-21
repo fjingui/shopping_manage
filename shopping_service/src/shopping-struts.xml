@@ -18,7 +18,11 @@
 <param name="root">jarry</param>
 </result>
 </action>
-
+<action name="importseller" class="com.shopping.action.ImportSeller" method="queryData">
+<result name="success" type="json">
+<param name="root">importjson</param>
+</result>
+</action>
 <action name="limitseller" class="com.shopping.action.LimitSellerAction" method="getLimitData">
 <result name="success" type="json">
 <param name="root">limitjson</param>

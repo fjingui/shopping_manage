@@ -86,7 +86,6 @@ public class ManageFactory implements ModelDriven<Factory> {
 		faclist.add(fac);
 		}
 		faclistjson=JSONArray.fromObject(faclist);
-		System.out.println(faclistjson);
 		return "success";
 	}
 	public String insertFactory() throws Exception{
@@ -100,11 +99,10 @@ public class ManageFactory implements ModelDriven<Factory> {
 		return "success";
 	}
 	public String updateFactory() throws Exception{
-		String sql="UPDATE 商家  SET factory_name="+fac.getFactory_name()+","+"factory_addr="+fac.getFactory_addr()+","
-				+ "fac_contact_nbr="+fac.getFac_contact_nbr()+","+"COMMENT="+fac.getComment()+","+"factory_log="+fac.getFactory_log()
-						+ " WHERE factory_id="+fac.getFactory_id();
-		System.out.println(sql);
-		System.out.println(fac.getComment());
+
+		String sql="UPDATE 商家  SET factory_name=\'"+fac.getFactory_name()+"\',"+"factory_addr=\'"+fac.getFactory_addr()+"\',"
+				+ "fac_contact_nbr="+fac.getFac_contact_nbr()+","+"COMMENT=\'"+fac.getComment()+"\',"+"factory_log=\'"+fac.getFactory_log()
+						+ "\'  WHERE factory_id="+fac.getFactory_id();
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		st.executeUpdate(sql);

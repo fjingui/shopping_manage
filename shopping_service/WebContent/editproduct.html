@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="mycss/bootstrap.css" rel="stylesheet">
+<link href="mycss/editfac.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-form.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<script>
+$(function () { 
+	  $("#query").click(function(){
+	  $.getJSON("manage/pro_selectProduct",
+		{proname:$("#selectvalue").val()},
+		 function(data){  
+			var trs="";
+		  $.each(data,function(n,value){
+			  trs+="<tr><td>"+value.product_id+"</td> <td>"+value.product_name+"</td><td>"
+			  +value.product_price+"</td><td>"+value.price_unit+"</td><td>"+value.product_desc+"</td><td>"
+			  +"<input type=button value=\"编辑\" onclick=\"btnclick()\"></td></tr>";
+		  })
+		  $("tbody").empty().append(trs);
+		  })
+		  })
+	})
+	
+	function btnclick(){
+
+   // $("input:button").click(function() {
+
+       var str =$("input:button").val()=="编辑"?"确定":"编辑";
+       
+        $("input:button").val(str);   // 按钮被点击后，在“编辑”和“确定”之间切换
+
+        $("input:button").parent().siblings("td").each(function(n) {  // 获取当前行的其他单元格
+        	obj_text = $(this).find("input:text");    // 判断单元格下是否有文本框
+
+            if(!obj_text.length) {  // 如果没有文本框，则添加文本框使之可以编辑
+            	
+                $(this).html("<input type='text' value='"+$(this).text()+"'>");
+            }
+             else   {// 如果已经存在文本框，则将其显示为文本框修改的值
+                $(this).html(obj_text.val()); 
+             }
+        });
+        if($("input:button").val()=="编辑"){
+        	$("input:button").parent().siblings("td").each(function(n) {
+        		$("#pro"+n).val($(this).text());
+        	})
+        	
+        }
+   // });
+
+}
+
+	function updateform(){
+	
+	$('#editpro').ajaxSubmit(function(){
+		alert("更新销售品成功");
+	//	window.location.href = "http://localhost:8080/shopping_service/editfactory.html"
+	})
+	$('#editpro').resetForm();
+	return false;
+}
+</script>
+<body>
+<div>
+<label style="height:30px;">销售品名称</label>
+<input type="text" id="selectvalue" style="height:30px;width:30%">
+&nbsp;&nbsp;&nbsp;
+<button class="btn btn-info" id="query">查询</button>
+</div>
+
+<div class="result">
+<table class="table table-hover " > 
+<thead><tr><th>销售品ID</th><th>销售品名称</th><th>销售品价格</th> <th>销售品单位</th> <th>销售品描述</th></tr></thead>
+<tbody >
+</tbody>
+</table>
+</div> 
+<form action="manage/pro_updateProduct" method="post" id ="editpro">
+<input type="hidden" id="pro0" name="product_id"  />
+<input type="hidden" id="pro1" name="product_name" />
+<input type="hidden" id="pro2" name="product_price"  />
+<input type="hidden" id="pro3" name="price_unit"  />
+<input type="hidden" id="pro4" name="product_desc"  />
+<center><button type="submit" class="btn btn-primary" onclick="return updateform()">更新销售品</button></center>
+</form>
+
+</body>
+</html>

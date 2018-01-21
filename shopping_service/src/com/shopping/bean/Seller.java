@@ -20,7 +20,7 @@ public class Seller {
 	private Float product_price;
 	private String price_unit;
 	private String product_desc ;
-	private List<Pro_Img> pro_imgs=new ArrayList<Pro_Img>();
+	private List<ProImg> pro_imgs=new ArrayList<ProImg>();
 	
 	public int getFactory_id() {
 		return factory_id;
@@ -95,10 +95,10 @@ public class Seller {
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-	public List<Pro_Img> getPro_imgs() {
+	public List<ProImg> getPro_imgs() {
 		return pro_imgs;
 	}
-	public void setPro_imgs(List<Pro_Img> pro_imgs) {
+	public void setPro_imgs(List<ProImg> pro_imgs) {
 		this.pro_imgs = pro_imgs;
 	}
 	

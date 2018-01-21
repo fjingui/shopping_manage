@@ -18,7 +18,6 @@ $(function () {
 		  }else if ($("select option:selected").val()=="商户账号"){
 		  varname={facacct: $("#selectvalue").val()};
 	  }
-		 console.log(varname);
 	  $.getJSON("manage/fac_selectFactory",
 		  varname,
 		 function(data){  
@@ -38,9 +37,10 @@ $(function () {
 	function updateform(){
 	$('#editfac').ajaxSubmit(function(){
 		alert("更新商户成功");
-		window.location.href = "http://localhost:8080/shopping_service/editfactory.html"
+		// window.location.href = "http://localhost:8080/shopping_service/editfactory.html"
 		//$(this).resetForm();
 	})
+	$('#editfac').resetForm();
 	return false;
 }
 </script>
@@ -50,7 +50,7 @@ $(function () {
 <option>商户名称</option>
 <option>商户账号</option>
 </select>
-<input type="text" id="selectvalue" style="eight:30px;width:30%"></text>
+<input type="text" id="selectvalue" style="eight:30px;width:30%">
 &nbsp;&nbsp;&nbsp;
 <button class="btn btn-info" id="selfac">查询</button>
 </div>
