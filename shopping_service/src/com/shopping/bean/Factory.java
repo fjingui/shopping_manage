@@ -5,7 +5,7 @@ import java.util.Date;
 public class Factory {
 
 	private int factory_id;
-	private Long factory_acct;
+	private Long cust_acct;
 	private String factory_name;
 	private String factory_addr;
 	private Long fac_contact_nbr;
@@ -48,13 +48,13 @@ public class Factory {
 	public void setFactory_id(int factory_id) {
 		this.factory_id = factory_id;
 	}
+	public Long getCust_acct() {
+		return cust_acct;
+	}
+	public void setCust_acct(Long cust_acct) {
+		this.cust_acct = cust_acct;
+	}
 
-	public Long getFactory_acct() {
-		return factory_acct;
-	}
-	public void setFactory_acct(Long factory_acct) {
-		this.factory_acct = factory_acct;
-	}
 	
 	
 }

@@ -7,8 +7,9 @@ import com.mysql.cj.api.jdbc.Statement;
 import com.mysql.conn.MySqlConn;
 
 public class NewOrder {
-
+	
     private String cust_acct;
+    private Long cust_order_id;
     private int product_id;
     private String order_status;
     private int order_amount;
@@ -30,9 +31,12 @@ public class NewOrder {
 		this.order_money = order_money;
 	}
 	
+	public void setCust_order_id(Long cust_order_id) {
+		this.cust_order_id = cust_order_id;
+	}
 	public void updateOrder() throws Exception{
-        String sql="INSERT INTO ¶©µ¥(cust_acct,product_id,order_money,order_status,order_amount) "
-        		+ "VALUES ("+cust_acct+","+product_id+","+order_money+",\""+order_status+"\","+
+        String sql="INSERT INTO shopping_orders(cust_acct,cust_order_id,product_id,order_money,order_status,order_amount) "
+        		+ "VALUES ("+cust_acct+","+cust_order_id+","+product_id+","+order_money+",\""+order_status+"\","+
         		order_amount+")";
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();

@@ -8,7 +8,7 @@ public class WholeOrder {
 	private String cust_name;
 	private String cust_address;
 	private Long cust_contact_nbr;
-	private int cust_order_id;
+	private String cust_order_id;
 	private String product_name;
 	private String factory_name;
 	private String factory_addr;
@@ -42,10 +42,11 @@ public class WholeOrder {
 	public void setCust_contact_nbr(Long cust_contact_nbr) {
 		this.cust_contact_nbr = cust_contact_nbr;
 	}
-	public int getCust_order_id() {
+	
+	public String getCust_order_id() {
 		return cust_order_id;
 	}
-	public void setCust_order_id(int cust_order_id) {
+	public void setCust_order_id(String cust_order_id) {
 		this.cust_order_id = cust_order_id;
 	}
 	public String getProduct_name() {

@@ -2,9 +2,10 @@ package com.shopping.bean;
 
 public class Order {
 
-	private int cust_order_id;
+	private String cust_order_id;
 	private String product_name;
 	private String factory_name;
+	private int product_id;
 	private float product_price;
 	private String factory_log;
     private int order_amount;
@@ -45,11 +46,26 @@ public class Order {
 	public void setOrder_money(float order_money) {
 		this.order_money = order_money;
 	}
-	public int getCust_order_id() {
+	public String getCust_order_id() {
 		return cust_order_id;
 	}
-	public void setCust_order_id(int cust_order_id) {
+	public void setCust_order_id(String cust_order_id) {
 		this.cust_order_id = cust_order_id;
+	}
+	public int getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
+	}
+	@Override
+	public String toString() {
+		return "Order [cust_order_id=" + cust_order_id + ", product_name="
+				+ product_name + ", factory_name=" + factory_name
+				+ ", product_id=" + product_id + ", product_price="
+				+ product_price + ", factory_log=" + factory_log
+				+ ", order_amount=" + order_amount + ", order_money="
+				+ order_money + "]";
 	}
     
        

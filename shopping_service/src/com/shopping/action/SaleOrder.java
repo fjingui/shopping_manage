@@ -71,9 +71,9 @@ public class SaleOrder {
 	
 	public void updateOrder() throws Exception {
 
-        String sql1="INSERT INTO ¿Í»§(cust_contact_nbr,cust_address,cust_name,cust_acct) "
+        String sql1="INSERT INTO shopping_cust(cust_contact_nbr,cust_address,cust_name,cust_acct) "
         		+ "values("+cust_contact_nbr+",\""+cust_address+"\",\""+cust_name+"\","+cust_acct+")";
-        String sql2="INSERT INTO ¶©µ¥(cust_acct,product_id,order_money,order_status,order_amount) "
+        String sql2="INSERT INTO shopping_orders(cust_acct,product_id,order_money,order_status,order_amount) "
         		+ "VALUES ("+cust_acct+","+product_id+","+order_money+",\""+order_status+"\","+
         		order_amount+")";
 		Connection conn= MySqlConn.getConnection();

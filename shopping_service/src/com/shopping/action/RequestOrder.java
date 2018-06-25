@@ -19,18 +19,19 @@ public class RequestOrder {
 	private JSONArray orderjson = new JSONArray();
 
 	public String queryOrder() throws Exception {
-		String sql = "SELECT b.product_name,b.product_price,a.cust_order_id,a.order_amount,a.order_money,c.factory_name,"
-				+ "c.factory_log FROM 订单 a LEFT JOIN 商品 b ON (a.product_id=b.product_id) "
-				+ "LEFT JOIN 商家 c ON (b.factory_id=c.factory_id) WHERE a.order_status="
-				+ "\""+orderstatus+"\"" + " AND cust_acct=" + cust_acct;
+		String sql = "SELECT b.product_name,b.product_price,a.product_id,a.cust_order_id,a.order_amount,a.order_money,c.factory_name,"
+				+ "c.factory_log FROM shopping_orders a LEFT JOIN shopping_sales b ON (a.product_id=b.product_id) "
+				+ "LEFT JOIN shopping_salers c ON (b.factory_id=c.factory_id) WHERE a.order_status="
+				+ "\""+orderstatus+"\"" + " AND a.cust_acct=" + cust_acct;
 		Connection conn = MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		ResultSet rs = st.executeQuery(sql); 
 		while (rs.next()) {
 			Order order = new Order();
-			order.setCust_order_id(rs.getInt("cust_order_id"));
+			order.setCust_order_id(rs.getString("cust_order_id"));
 			order.setFactory_log(rs.getString("factory_log"));
 			order.setFactory_name(rs.getString("factory_name"));
+			order.setProduct_id(rs.getInt("product_id"));
 			order.setProduct_name(rs.getString("product_name"));
 			order.setProduct_price(rs.getFloat("product_price"));
 			order.setOrder_amount(rs.getInt("order_amount"));
@@ -39,6 +40,7 @@ public class RequestOrder {
 		}
 		MySqlConn.realseConn(conn, st);
 		orderjson = JSONArray.fromObject(orderlist);
+		System.out.println(orderjson);
 		return "success";
 	}
 

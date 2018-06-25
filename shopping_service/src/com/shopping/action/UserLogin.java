@@ -38,12 +38,10 @@ public class UserLogin extends ActionSupport implements ModelDriven<UserAcct> {
 	public String checkUser() throws Exception{
 		String sql="SELECT count(*) rows FROM cust_acct_login WHERE cust_acct="+mphone+
 				" and passwd ="+mpassword;
-		System.out.println(sql);
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		ResultSet rs=st.executeQuery(sql);
 		if(rs.next()){
-		System.out.println(rs.getInt("rows"));
 		if (rs.getInt("rows")>0) {
 			inputstream=new ByteArrayInputStream("true".getBytes("UTF-8"));
 		} else {

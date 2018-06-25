@@ -18,7 +18,7 @@ public class DelOrder {
 	public String deleteOrder() throws Exception{
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
-		String sql="DELETE FROM 订单 WHERE order_status='购物车' and cust_order_id="+orderid+" and cust_acct="+cust_acct;
+		String sql="DELETE FROM shopping_orders WHERE cust_order_id="+orderid+" and cust_acct="+cust_acct;
 		st.executeUpdate(sql);
 		MySqlConn.realseConn(conn, st);
 		inputstream=new ByteArrayInputStream("成功"  
@@ -29,7 +29,7 @@ public class DelOrder {
 	public String delallorder() throws Exception{
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
-		String sql="DELETE FROM 订单 WHERE order_status='购物车' and cust_acct="+cust_acct;
+		String sql="DELETE FROM shopping_orders WHERE cust_acct="+cust_acct;
 		st.executeUpdate(sql);
 		MySqlConn.realseConn(conn, st);
 		inputstream=new ByteArrayInputStream("成功"  

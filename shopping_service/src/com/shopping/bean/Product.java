@@ -9,6 +9,7 @@ public class Product {
 	private String product_desc ;
 	private String sale_state;
 	private int factory_id;
+	
 	public int getProduct_id() {
 		return product_id;
 	}

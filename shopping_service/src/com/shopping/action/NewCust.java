@@ -34,7 +34,7 @@ public class NewCust {
 	}
 	
 	public void updateCust() throws Exception{
-        String sql="UPDATE 客户 SET cust_contact_nbr="+cust_contact_nbr+","
+        String sql="UPDATE shopping_cust  SET cust_contact_nbr="+cust_contact_nbr+","
         		+ "cust_address="+"\'"+cust_address+"\'"+","
         		+ "cust_name="+"\'"+cust_name+"\'"+ "WHERE cust_id="+cust_id;
 		Connection conn= MySqlConn.getConnection();
@@ -43,8 +43,8 @@ public class NewCust {
 		MySqlConn.realseConn(conn, st);
 	}
 	public void insertCust() throws Exception{
-		String sql1="UPDATE 客户 SET checked=0 where cust_acct="+cust_acct;
-		String sql2="INSERT INTO 客户 (cust_name,cust_address,cust_acct,cust_contact_nbr,checked) "
+		String sql1="UPDATE shopping_cust SET checked=0 where cust_acct="+cust_acct;
+		String sql2="INSERT INTO shopping_cust(cust_name,cust_address,cust_acct,cust_contact_nbr,checked) "
 	        		+ "VALUES ("+"\'"+cust_name+"\'"+","+"\'"+cust_address+"\'"+","+cust_acct+
 	        		","+cust_contact_nbr+","+checkflag+")";
 		Connection conn= MySqlConn.getConnection();
@@ -54,8 +54,8 @@ public class NewCust {
 		MySqlConn.realseConn(conn, st);
 	}
 	public void updateCustStatus() throws Exception{
-		String sql1="UPDATE 客户 SET checked=0 where cust_acct="+cust_acct;
-		String sql2="UPDATE 客户 SET checked=1 WHERE cust_id="+cust_id;
+		String sql1="UPDATE shopping_cust SET checked=0 where cust_acct="+cust_acct;
+		String sql2="UPDATE shopping_cust SET checked=1 WHERE cust_id="+cust_id;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		st.executeUpdate(sql1);
@@ -64,11 +64,8 @@ public class NewCust {
 
 	}
 	public String execute() throws Exception{
-		if (cust_id>0){
-			updateCust();
-		}else {
+		
 			insertCust();
-		}
 		return "success";
 	}
 

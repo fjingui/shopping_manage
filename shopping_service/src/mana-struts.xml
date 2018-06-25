@@ -16,21 +16,70 @@
 </result>
 </action> 
 
-<action name="fac_*" class="com.manage.action.ManageFactory" method="{1}">
+<action name="fac_select" class="com.manage.action.ManageFactory" method="selectFactory">
+<result name="success" type="json">
+<param name="root">facjson</param>
+</result> 
+</action>
+
+<action name="fac_all" class="com.manage.action.ManageFactory" method="selectAllFactory">
 <result name="success" type="json">
 <param name="root">faclistjson</param>
+</result> 
+</action>
+<action name="fac_del" class="com.manage.action.ManageFactory" method="delFactory">
+<result type="stream" >
+<param name="contentType">text/html</param>  
+<param name="inputName">inputstream</param>
 </result>
 </action>
 
+<action name="fac_*" class="com.manage.action.ManageFactory" method="{1}">
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json"></result>
+</action>
+<action name="pro_list" class="com.manage.action.ManageProduct" method="selectAllProduct">
+<result name="success" type="json">
+<param name="root">prosjson</param>
+</result>
+</action>
+<action name="pro_select" class="com.manage.action.ManageProduct" method="selectProduct">
+<result name="success" type="json">
+<param name="root">projson</param>
+</result>
+</action>
 <action name="pro_*" class="com.manage.action.ManageProduct" method="{1}">
-<result name="success" type="json">
-<param name="root">prolistjson</param>
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json"></result>
+</action>
+<action name="pro_del" class="com.manage.action.ManageProduct" method="delProduct">
+<result type="stream" >
+<param name="contentType">text/html</param>  
+<param name="inputName">inputstream</param>
 </result>
 </action>
 
-<action name="proimg_*" class="com.manage.action.ManageProductImg" method="{1}">
+<action name="proimg_del" class="com.manage.action.ManageProductImg" method="delProImg">
+<result type="stream" >
+<param name="contentType">text/html</param>  
+<param name="inputName">inputstream</param>
+</result>
+</action>
+
+<action name="proimg_insert" class="com.manage.action.ManageProductImg" method="insertProImg">
+<interceptor-ref name="json">
+<param name="contentType">application/json</param>
+</interceptor-ref>
+<result type="json"></result>
+</action>
+
+<action name="proimg_list" class="com.manage.action.ManageProductImg" method="selectProImgs">
 <result name="success" type="json">
-<param name="root">proimgjson</param>
+<param name="root">proimgsjson</param>
 </result>
 </action>
 

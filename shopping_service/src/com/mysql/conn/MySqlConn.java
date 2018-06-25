@@ -13,7 +13,7 @@ public class MySqlConn {
 	public static Connection getConnection() throws Exception{
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		   conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopping?useSSL=true&serverTimezone=GMT","root","123456");
+		   conn = DriverManager.getConnection("jdbc:mysql://114.115.138.24:3306/shopping?useSSL=true&serverTimezone=GMT","root","FJGfjg662004");
 		return conn;
 	}
 	public static void realseConn(Connection con,Statement st) throws SQLException {

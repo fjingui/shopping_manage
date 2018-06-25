@@ -22,7 +22,7 @@ public class RequestCust {
 	
 	public String queryCust() throws Exception{
 		String sql="SELECT cust_id,cust_name,cust_address,cust_contact_nbr,cust_acct "
-				+ "FROM 客户  WHERE checked=1 AND cust_acct="+cust_acct;
+				+ "FROM shopping_cust  WHERE checked=1 AND cust_acct="+cust_acct;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		ResultSet rs=st.executeQuery(sql);
@@ -32,6 +32,7 @@ public class RequestCust {
 		user.setCust_id(rs.getInt("cust_id"));
 		user.setCust_contact_nbr(rs.getString("cust_contact_nbr"));
 		user.setCust_address(rs.getString("cust_address"));
+		user.setChecked(1);
 		}
 		userjson=JSONObject.fromObject(user);
 		return "cust";
@@ -39,7 +40,7 @@ public class RequestCust {
 	
 	public String queryCustList() throws Exception {
 		String sql="SELECT cust_id,cust_name,cust_address,cust_contact_nbr,cust_acct,checked "
-				+ "FROM 客户 WHERE cust_acct="+cust_acct;
+				+ "FROM shopping_cust WHERE cust_acct="+cust_acct;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		ResultSet rs=st.executeQuery(sql);

@@ -85,6 +85,12 @@
 </result>
 </action>
 
+<action name="homeimgs" class="com.shopping.action.HomeLogoImagine" method="queryImgs">
+<result name="imgs" type="json">
+<param name="root">imgsjson</param>
+</result>
+</action>
+
 </package>
 
 <!-- <include file="mana-struts.xml"></include> -->

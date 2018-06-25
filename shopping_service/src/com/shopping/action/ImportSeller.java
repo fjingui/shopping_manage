@@ -22,8 +22,8 @@ public class ImportSeller {
         ResultSet rs;
 		Connection conn=MySqlConn.getConnection();
 		sql="SELECT a.*,b.product_id, b.product_name,b.product_price,b.price_unit,b.product_desc,c.pro_img_addr,c.pro_img_desc "
-				+ "FROM 商家 a LEFT JOIN 商品  b ON (a.factory_id=b.factory_id) "
-				+ "LEFT JOIN 商品图集  c ON (b.product_id=c.product_id) WHERE a.factory_name<>'拍卖珍藏' "
+				+ "FROM shopping_salers a LEFT JOIN shopping_sales  b ON (a.factory_id=b.factory_id) "
+				+ "LEFT JOIN shopping_saleimgs  c ON (b.product_id=c.product_id) WHERE a.factory_name<>'拍卖珍藏' "
 				+ "and b.if_important=1";
 		Statement state = (Statement) conn.createStatement();
 		rs=state.executeQuery(sql);
