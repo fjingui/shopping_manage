@@ -2,14 +2,17 @@ package com.shopping.bean;
 
 public class Order {
 
+	private String cust_acct;
 	private String cust_order_id;
 	private String product_name;
 	private String factory_name;
 	private int product_id;
 	private float product_price;
+	private String product_unit;
 	private String factory_log;
     private int order_amount;
     private float order_money;
+    private String order_status;
 	public String getProduct_name() {
 		return product_name;
 	}
@@ -57,6 +60,27 @@ public class Order {
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+	
+	public String getCust_acct() {
+		return cust_acct;
+	}
+	public void setCust_acct(String cust_acct) {
+		this.cust_acct = cust_acct;
+	}
+	
+	public String getOrder_status() {
+		return order_status;
+	}
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
+	}
+	
+	public String getProduct_unit() {
+		return product_unit;
+	}
+	public void setProduct_unit(String product_unit) {
+		this.product_unit = product_unit;
 	}
 	@Override
 	public String toString() {

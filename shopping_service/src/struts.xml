@@ -6,6 +6,8 @@
 <struts>
 
 <constant name="struts.devMode" value="true"/>
+<constant name="struts.multipart.maxSize" value="100000000"/> 
+<constant name="struts.multipart.saveDir" value="/tempdir"/>
 
 <include file="shopping-struts.xml"></include>
 <include file="mana-struts.xml"></include> 

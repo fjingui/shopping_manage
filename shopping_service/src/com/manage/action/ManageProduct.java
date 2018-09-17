@@ -25,6 +25,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 	private String price_unit;
 	private String product_desc ;
 	private String sale_state;
+	private String product_unit;
 	private int factory_id;
 	private Product proobj = new Product();
 	private JSONObject projson = new JSONObject();
@@ -40,7 +41,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 	public String selectProduct() throws Exception{
 	    ResultSet rs;
 		String sql="select product_name,product_price,price_unit,sale_state,product_desc,factory_id,"
-				+ "product_id FROM shopping_sales  "
+				+ "product_id,product_unit FROM shopping_sales  "
 				+ "WHERE product_name LIKE  "+"\'%"+product_name+"%\'"+" and factory_id ="+factory_id;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
@@ -50,6 +51,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 		proobj.setProduct_id(rs.getInt("product_id"));
 		proobj.setProduct_name(rs.getString("product_name"));
 		proobj.setProduct_price(rs.getFloat("product_price"));
+		proobj.setProduct_unit(rs.getString("product_unit"));
 		proobj.setPrice_unit(rs.getString("price_unit"));
 		proobj.setSale_state(rs.getString("sale_state"));
 		proobj.setProduct_desc(rs.getString("product_desc"));
@@ -60,7 +62,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 	public String selectAllProduct() throws Exception{
 	    ResultSet rs;
 		String sql="select product_name,product_price,price_unit,sale_state,product_desc,factory_id,"
-				+ "product_id FROM shopping_sales  "
+				+ "product_id,product_unit FROM shopping_sales  "
 				+ "WHERE factory_id ="+factory_id;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
@@ -74,18 +76,18 @@ public class ManageProduct { //implements ModelDriven<Product>
 		product.setPrice_unit(rs.getString("price_unit"));
 		product.setSale_state(rs.getString("sale_state"));
 		product.setProduct_desc(rs.getString("product_desc"));
+		product.setProduct_unit(rs.getString("product_unit"));
 		products.add(product);
 		}
 		prosjson=JSONArray.fromObject(products);
 		return "success";
 	}
 	public String insertProduct() throws Exception{
-		 String sql="INSERT INTO shopping_sales(product_name,product_price,price_unit,sale_state,product_desc,factory_id) "
+		 String sql="INSERT INTO shopping_sales(product_name,product_price,price_unit,sale_state,product_desc,factory_id,product_unit) "
 	        		+ "VALUES (\'"+product_name+"\',"+product_price+",\'"
-				 +price_unit+"\',\'"+sale_state+"\',\'"+product_desc+"\',"+factory_id+")";
+				 +price_unit+"\',\'"+sale_state+"\',\'"+product_desc+"\',"+factory_id+"\',\'"+product_unit+"\')";
 			Connection conn= MySqlConn.getConnection();
 			Statement st = (Statement) conn.createStatement();
-			System.out.println(sql);
 			st.executeUpdate(sql);
 			MySqlConn.realseConn(conn, st);
 			
@@ -93,8 +95,8 @@ public class ManageProduct { //implements ModelDriven<Product>
 	}
 	public String updateProduct() throws Exception{
 		String sql="UPDATE shopping_sales   SET product_name=\'"+product_name+"\',"+"product_price="+product_price+","
-				+ "price_unit=\'"+price_unit+"\',"+"product_desc=\'"+product_desc
-						+ "\' WHERE product_id="+product_id;
+				+ "price_unit=\'"+price_unit+"\',"+"product_desc=\'"+product_desc+"\',product_unit=\'"+product_unit
+						+ "\'  WHERE product_id="+product_id;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		st.executeUpdate(sql);

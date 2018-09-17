@@ -23,10 +23,10 @@ public class SellerAction {
         Seller sellbean=null;
         ResultSet rs;
 		Connection conn=MySqlConn.getConnection();
-		sql1="SELECT a.*,b.product_id, b.product_name,b.product_price,b.price_unit,b.product_desc,c.pro_img_addr,c.pro_img_desc "
+		sql1="SELECT a.*,b.product_id, b.product_name,b.product_price,b.price_unit,b.product_desc,b.product_unit, c.pro_img_addr,c.pro_img_desc "
 				+ "FROM shopping_salers a LEFT JOIN shopping_sales  b ON (a.factory_id=b.factory_id) "
 				+ "LEFT JOIN shopping_saleimgs  c ON (b.product_id=c.product_id) WHERE a.factory_name<>'≈ƒ¬Ù’‰≤ÿ'";
-		sql2="SELECT a.*,b.product_id, b.product_name,b.product_price,b.price_unit,b.product_desc,c.pro_img_addr,c.pro_img_desc "
+		sql2="SELECT a.*,b.product_id, b.product_name,b.product_price,b.price_unit,b.product_desc,b.product_unit,c.pro_img_addr,c.pro_img_desc "
 				+ "FROM shopping_salers a LEFT JOIN shopping_sales  b ON (a.factory_id=b.factory_id) "
 				+ "LEFT JOIN shopping_saleimgs  c ON (b.product_id=c.product_id) WHERE a.factory_name<>'≈ƒ¬Ù’‰≤ÿ' "
 				+ "and b.product_name like '%"+proname+"%'";
@@ -60,6 +60,8 @@ public class SellerAction {
 				sellbean.setProduct_price(rs.getFloat("product_price"));
 				sellbean.setPrice_unit(rs.getString("price_unit"));
 				sellbean.setProduct_desc(rs.getString("product_desc"));
+				sellbean.setProduct_unit(rs.getString("product_unit"));
+				sellbean.setCust_acct(rs.getString("cust_acct"));
 				sellbean.getPro_imgs().add(new ProImg(rs.getString("pro_img_addr"),rs.getString("pro_img_desc")));
 				if (rs.isLast()){
 					sellerlist.add(sellbean);

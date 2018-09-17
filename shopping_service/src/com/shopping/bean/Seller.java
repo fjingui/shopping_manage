@@ -20,6 +20,8 @@ public class Seller {
 	private Float product_price;
 	private String price_unit;
 	private String product_desc ;
+	private String product_unit;
+	private String cust_acct;
 	private List<ProImg> pro_imgs=new ArrayList<ProImg>();
 	
 	public int getFactory_id() {
@@ -100,6 +102,18 @@ public class Seller {
 	}
 	public void setPro_imgs(List<ProImg> pro_imgs) {
 		this.pro_imgs = pro_imgs;
+	}
+	public String getCust_acct() {
+		return cust_acct;
+	}
+	public void setCust_acct(String cust_acct) {
+		this.cust_acct = cust_acct;
+	}
+	public String getProduct_unit() {
+		return product_unit;
+	}
+	public void setProduct_unit(String product_unit) {
+		this.product_unit = product_unit;
 	}
 	
 

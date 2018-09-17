@@ -36,7 +36,7 @@ public class UserLogin extends ActionSupport implements ModelDriven<UserAcct> {
 	}
 	
 	public String checkUser() throws Exception{
-		String sql="SELECT count(*) rows FROM cust_acct_login WHERE cust_acct="+mphone+
+		String sql="SELECT count(*) rows FROM cust_account WHERE cust_acct="+mphone+
 				" and passwd ="+mpassword;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();

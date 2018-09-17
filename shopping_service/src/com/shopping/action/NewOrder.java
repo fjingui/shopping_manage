@@ -34,7 +34,7 @@ public class NewOrder {
 	public void setCust_order_id(Long cust_order_id) {
 		this.cust_order_id = cust_order_id;
 	}
-	public void updateOrder() throws Exception{
+	public void insertOrder() throws Exception{
         String sql="INSERT INTO shopping_orders(cust_acct,cust_order_id,product_id,order_money,order_status,order_amount) "
         		+ "VALUES ("+cust_acct+","+cust_order_id+","+product_id+","+order_money+",\""+order_status+"\","+
         		order_amount+")";
@@ -43,8 +43,15 @@ public class NewOrder {
 		st.executeUpdate(sql);
 		MySqlConn.realseConn(conn, st);
 	}
+	public void updateOrder() throws Exception{
+        String sql="UPDATE shopping_orders SET order_money="+order_money+" WHERE cust_order_id="+cust_order_id;
+		Connection conn= MySqlConn.getConnection();
+		Statement st = (Statement) conn.createStatement();
+		st.executeUpdate(sql);
+		MySqlConn.realseConn(conn, st);
+	}
 	public String execute() throws Exception{
-		updateOrder();
+		insertOrder();
 		return "success";
 	}
 }
