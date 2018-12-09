@@ -21,17 +21,22 @@ public class ImportSeller {
         Seller sellbean=null;
         ResultSet rs;
 		Connection conn=MySqlConn.getConnection();
-		sql="SELECT a.*,b.product_id, b.product_name,b.product_price,b.price_unit,b.product_desc,c.pro_img_addr,c.pro_img_desc "
-				+ "FROM shopping_salers a LEFT JOIN shopping_sales  b ON (a.factory_id=b.factory_id) "
-				+ "LEFT JOIN shopping_saleimgs  c ON (b.product_id=c.product_id) WHERE a.factory_name<>'≈ƒ¬Ù’‰≤ÿ' "
-				+ "and b.if_important=1";
+		sql="SELECT a.*,b.product_id, b.product_name,b.product_price,b.price_unit,b.product_unit,b.product_desc,c.pro_img_addr,c.pro_img_desc "
+				+ "FROM shopping_salers a  JOIN shopping_sales  b ON (a.factory_id=b.factory_id) "
+				+ " JOIN shopping_saleimgs  c ON (b.product_id=c.product_id) "
+				+ " WHERE b.sale_state=\'‘⁄ €\'  AND b.if_important=1 ";
 		Statement state = (Statement) conn.createStatement();
 		rs=state.executeQuery(sql);
 		while(rs.next()) {
 			
 			if(sellbean!=null && sellbean.getFactory_id() == rs.getInt("factory_id")) {
 				sellbean.getPro_imgs().add(new ProImg(rs.getString("pro_img_addr"),rs.getString("pro_img_desc")));
-				continue;
+				if (rs.isLast()){
+					importseller.add(sellbean);
+					continue;
+				}else {
+					continue;
+				}
 			}
 			if(sellbean !=null ){
 				importseller.add(sellbean);
@@ -51,6 +56,7 @@ public class ImportSeller {
 				sellbean.setProduct_price(rs.getFloat("product_price"));
 				sellbean.setPrice_unit(rs.getString("price_unit"));
 				sellbean.setProduct_desc(rs.getString("product_desc"));
+				sellbean.setProduct_unit(rs.getString("product_unit"));
 				sellbean.getPro_imgs().add(new ProImg(rs.getString("pro_img_addr"),rs.getString("pro_img_desc")));
 				if (rs.isLast()){
 					importseller.add(sellbean);

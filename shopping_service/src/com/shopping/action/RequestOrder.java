@@ -22,8 +22,8 @@ public class RequestOrder {
 	//消费者购买订单，根据消费者在订单表cust_acct
 	public String queryOrder() throws Exception {
 		ResultSet rs;
-		String sql = "SELECT b.product_name,b.product_price,b.product_unit,a.cust_acct,a.product_id,a.cust_order_id,a.order_amount,a.order_status,a.order_money,c.factory_name,"
-				+ "c.factory_log FROM shopping_orders a LEFT JOIN shopping_sales b ON (a.product_id=b.product_id) "
+		String sql = "SELECT b.product_name,b.product_price,b.product_unit,b.product_stor,a.cust_acct,a.product_id,a.cust_order_id,a.order_amount,a.order_status,a.order_money,c.factory_name,"
+				+ "a.express_chrg,a.discount_chrg, c.factory_log,c.saler_cust_acct FROM shopping_orders a LEFT JOIN shopping_sales b ON (a.product_id=b.product_id) "
 				+ "LEFT JOIN shopping_salers c ON (b.factory_id=c.factory_id) WHERE a.order_status in "
 				+ "("+orderstatus+")" + " AND a.cust_acct=" + cust_acct;
 		Connection conn = MySqlConn.getConnection();
@@ -39,9 +39,13 @@ public class RequestOrder {
 			order.setProduct_name(rs.getString("product_name"));
 			order.setProduct_price(rs.getFloat("product_price"));
 			order.setProduct_unit(rs.getString("product_unit"));
+			order.setProduct_stor(rs.getInt("product_stor"));
 			order.setOrder_amount(rs.getInt("order_amount"));
 			order.setOrder_money(rs.getFloat("order_money"));
 			order.setOrder_status(rs.getString("order_status"));
+			order.setSaler_cust_acct(rs.getString("saler_cust_acct"));
+			order.setExpress_chrg(rs.getFloat("express_chrg"));
+			order.setDiscount_chrg(rs.getFloat("discount_chrg"));
 			orderlist.add(order);
 		}
 		MySqlConn.realseConn(conn, st);
@@ -51,10 +55,10 @@ public class RequestOrder {
 
 	//销售者销售订单，根据销售商表cust_acct
 public String querySalerOrders() throws Exception{
-	String sql = "SELECT b.product_name,b.product_price,b.product_unit,c.cust_acct,c.product_id,c.cust_order_id,c.order_status,c.order_amount,c.order_money,a.factory_name,"
-			+ "a.factory_log FROM shopping_salers a inner JOIN shopping_sales b ON (a.factory_id=b.factory_id) "
+	String sql = "SELECT b.product_name,b.product_price,b.product_unit,b.product_stor,c.cust_acct,c.product_id,c.cust_order_id,c.order_status,c.order_amount,c.order_money,a.factory_name,"
+			+ "c.express_chrg,c.discount_chrg,a.factory_log,a.saler_cust_acct FROM shopping_salers a inner JOIN shopping_sales b ON (a.factory_id=b.factory_id) "
 			+ "inner JOIN shopping_orders c ON (b.product_id=c.product_id) WHERE c.order_status in "
-			+ "("+orderstatus+")" + " AND a.cust_acct=" + cust_acct;
+			+ "("+orderstatus+")" + " AND a.saler_cust_acct=" + cust_acct;
 	Connection conn = MySqlConn.getConnection();
 	Statement st = (Statement) conn.createStatement();
 	ResultSet rs = st.executeQuery(sql); 
@@ -67,10 +71,14 @@ public String querySalerOrders() throws Exception{
 		order.setProduct_name(rs.getString("product_name"));
 		order.setProduct_price(rs.getFloat("product_price"));
 		order.setProduct_unit(rs.getString("product_unit"));
+		order.setProduct_stor(rs.getInt("product_stor"));
 		order.setOrder_amount(rs.getInt("order_amount"));
 		order.setOrder_money(rs.getFloat("order_money"));
 		order.setCust_acct(rs.getString("cust_acct"));
 		order.setOrder_status(rs.getString("order_status"));
+		order.setSaler_cust_acct(rs.getString("saler_cust_acct"));
+		order.setExpress_chrg(rs.getFloat("express_chrg"));
+		order.setDiscount_chrg(rs.getFloat("discount_chrg"));
 		orderlist.add(order);
 	}
 	MySqlConn.realseConn(conn, st);

@@ -102,6 +102,11 @@
 </result>
 </action>
 
+<action name="getapkver" class="com.manage.action.ApkVersionAction" method="getApkVersion">
+<result name="success" type="json">
+<param name="root">apkverjsn</param>
+</result>
+</action>
 </package> 
 
 </struts>

@@ -5,13 +5,25 @@ import java.util.Date;
 public class Factory {
 
 	private int factory_id;
-	private Long cust_acct;
+	private String saler_cust_acct;
 	private String factory_name;
 	private String factory_addr;
-	private Long fac_contact_nbr;
+	private String fac_contact_nbr;
 	private String factory_log;
 	private String comment;
+	public int getFactory_id() {
+		return factory_id;
+	}
+	public void setFactory_id(int factory_id) {
+		this.factory_id = factory_id;
+	}
 	
+	public String getSaler_cust_acct() {
+		return saler_cust_acct;
+	}
+	public void setSaler_cust_acct(String saler_cust_acct) {
+		this.saler_cust_acct = saler_cust_acct;
+	}
 	public String getFactory_name() {
 		return factory_name;
 	}
@@ -24,10 +36,10 @@ public class Factory {
 	public void setFactory_addr(String factory_addr) {
 		this.factory_addr = factory_addr;
 	}
-	public Long getFac_contact_nbr() {
+	public String getFac_contact_nbr() {
 		return fac_contact_nbr;
 	}
-	public void setFac_contact_nbr(Long fac_contact_nbr) {
+	public void setFac_contact_nbr(String fac_contact_nbr) {
 		this.fac_contact_nbr = fac_contact_nbr;
 	}
 	public String getFactory_log() {
@@ -42,19 +54,6 @@ public class Factory {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public int getFactory_id() {
-		return factory_id;
-	}
-	public void setFactory_id(int factory_id) {
-		this.factory_id = factory_id;
-	}
-	public Long getCust_acct() {
-		return cust_acct;
-	}
-	public void setCust_acct(Long cust_acct) {
-		this.cust_acct = cust_acct;
-	}
-
 	
 	
 }

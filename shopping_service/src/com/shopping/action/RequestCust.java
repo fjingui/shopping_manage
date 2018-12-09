@@ -22,7 +22,7 @@ public class RequestCust {
 	
 	public String queryCust() throws Exception{
 		String sql="SELECT cust_id,cust_name,cust_address,cust_contact_nbr,cust_acct "
-				+ "FROM shopping_cust  WHERE checked=1 AND cust_acct="+cust_acct;
+				+ "FROM shopping_cust  WHERE checked=1 AND cust_acct="+cust_acct +" order by cust_id DESC limit 1 ";
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		ResultSet rs=st.executeQuery(sql);

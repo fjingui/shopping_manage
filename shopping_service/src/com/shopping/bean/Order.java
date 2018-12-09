@@ -9,10 +9,15 @@ public class Order {
 	private int product_id;
 	private float product_price;
 	private String product_unit;
+	private int product_stor;
 	private String factory_log;
     private int order_amount;
     private float order_money;
     private String order_status;
+    private String saler_cust_acct;
+    private float express_chrg;
+    private float discount_chrg;
+    
 	public String getProduct_name() {
 		return product_name;
 	}
@@ -55,6 +60,13 @@ public class Order {
 	public void setCust_order_id(String cust_order_id) {
 		this.cust_order_id = cust_order_id;
 	}
+	
+	public int getProduct_stor() {
+		return product_stor;
+	}
+	public void setProduct_stor(int product_stor) {
+		this.product_stor = product_stor;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -81,6 +93,27 @@ public class Order {
 	}
 	public void setProduct_unit(String product_unit) {
 		this.product_unit = product_unit;
+	}
+	
+	public String getSaler_cust_acct() {
+		return saler_cust_acct;
+	}
+	public void setSaler_cust_acct(String saler_cust_acct) {
+		this.saler_cust_acct = saler_cust_acct;
+	}
+	
+	
+	public float getExpress_chrg() {
+		return express_chrg;
+	}
+	public void setExpress_chrg(float express_chrg) {
+		this.express_chrg = express_chrg;
+	}
+	public float getDiscount_chrg() {
+		return discount_chrg;
+	}
+	public void setDiscount_chrg(float discount_chrg) {
+		this.discount_chrg = discount_chrg;
 	}
 	@Override
 	public String toString() {

@@ -40,9 +40,9 @@ public class ManageFactory  {  //implements ModelDriven<Factory>
 
 	public String selectFactory() throws Exception{
 	    ResultSet rs=null;
-		String sql11="SELECT distinct factory_id,cust_acct,factory_name,factory_addr,fac_contact_nbr,"
+		String sql11="SELECT distinct factory_id,saler_cust_acct,factory_name,factory_addr,fac_contact_nbr,"
 				+ "factory_log,comment FROM shopping_salers  "
-				+ "WHERE cust_acct = "+cust_acct;
+				+ "WHERE saler_cust_acct = "+cust_acct;
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
 		if(cust_acct!=null){
@@ -50,10 +50,10 @@ public class ManageFactory  {  //implements ModelDriven<Factory>
 		}
 		while (rs.next()){
 			facobj.setFactory_id(rs.getInt("factory_id"));
-			facobj.setCust_acct(rs.getLong("cust_acct"));
+			facobj.setSaler_cust_acct(rs.getString("saler_cust_acct"));
 			facobj.setFactory_name(rs.getString("factory_name"));
 			facobj.setFactory_addr(rs.getString("factory_addr"));
-			facobj.setFac_contact_nbr(rs.getLong("fac_contact_nbr"));
+			facobj.setFac_contact_nbr(rs.getString("fac_contact_nbr"));
 			facobj.setFactory_log(rs.getString("factory_log"));
 			facobj.setComment(rs.getString("comment"));
 		}
@@ -62,7 +62,7 @@ public class ManageFactory  {  //implements ModelDriven<Factory>
 	}
 	public String selectAllFactory() throws Exception{
 	    ResultSet rs;
-		String sql22="SELECT distinct factory_id,cust_acct,factory_name,factory_addr,fac_contact_nbr,"
+		String sql22="SELECT distinct factory_id,saler_cust_acct,factory_name,factory_addr,fac_contact_nbr,"
 				+ "factory_log,comment FROM shopping_salers  ";
 		Connection conn= MySqlConn.getConnection();
 		Statement st = (Statement) conn.createStatement();
@@ -70,10 +70,10 @@ public class ManageFactory  {  //implements ModelDriven<Factory>
 		while (rs.next()){
 		Factory fac= new Factory();
 		fac.setFactory_id(rs.getInt("factory_id"));
-		fac.setCust_acct(rs.getLong("cust_acct"));
+		fac.setSaler_cust_acct(rs.getString("saler_cust_acct"));
 		fac.setFactory_name(rs.getString("factory_name"));
 		fac.setFactory_addr(rs.getString("factory_addr"));
-		fac.setFac_contact_nbr(rs.getLong("fac_contact_nbr"));
+		fac.setFac_contact_nbr(rs.getString("fac_contact_nbr"));
 		fac.setFactory_log(rs.getString("factory_log"));
 		fac.setComment(rs.getString("comment"));
 		faclist.add(fac);
@@ -82,7 +82,7 @@ public class ManageFactory  {  //implements ModelDriven<Factory>
 		return "success";
 	}
 	public String insertFactory() throws Exception{
-		 String sql="INSERT INTO shopping_salers(factory_name,factory_addr,fac_contact_nbr,factory_log,comment,cust_acct) "
+		 String sql="INSERT INTO shopping_salers(factory_name,factory_addr,fac_contact_nbr,factory_log,comment,saler_cust_acct) "
 	        		+ "VALUES ("+"\'"+factory_name+"\'"+","+"\'"+factory_addr+"\'"+","
 				 +fac_contact_nbr+","+"\'"+factory_log+"\'"+","+"\'"+comment+"\'"+","+cust_acct+")";
 		 Connection conn= MySqlConn.getConnection();

@@ -22,6 +22,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 	private int product_id;
 	private String product_name;
 	private Float product_price;
+	private int product_stor;
 	private String price_unit;
 	private String product_desc ;
 	private String sale_state;
@@ -40,7 +41,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 //	}
 	public String selectProduct() throws Exception{
 	    ResultSet rs;
-		String sql="select product_name,product_price,price_unit,sale_state,product_desc,factory_id,"
+		String sql="select product_name,product_price,product_stor,price_unit,sale_state,product_desc,factory_id,"
 				+ "product_id,product_unit FROM shopping_sales  "
 				+ "WHERE product_name LIKE  "+"\'%"+product_name+"%\'"+" and factory_id ="+factory_id;
 		Connection conn= MySqlConn.getConnection();
@@ -51,6 +52,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 		proobj.setProduct_id(rs.getInt("product_id"));
 		proobj.setProduct_name(rs.getString("product_name"));
 		proobj.setProduct_price(rs.getFloat("product_price"));
+		proobj.setProduct_stor(rs.getInt("product_stor"));
 		proobj.setProduct_unit(rs.getString("product_unit"));
 		proobj.setPrice_unit(rs.getString("price_unit"));
 		proobj.setSale_state(rs.getString("sale_state"));
@@ -61,7 +63,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 	}
 	public String selectAllProduct() throws Exception{
 	    ResultSet rs;
-		String sql="select product_name,product_price,price_unit,sale_state,product_desc,factory_id,"
+		String sql="select product_name,product_price,product_stor,price_unit,sale_state,product_desc,factory_id,"
 				+ "product_id,product_unit FROM shopping_sales  "
 				+ "WHERE factory_id ="+factory_id;
 		Connection conn= MySqlConn.getConnection();
@@ -73,6 +75,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 		product.setProduct_id(rs.getInt("product_id"));
 		product.setProduct_name(rs.getString("product_name"));
 		product.setProduct_price(rs.getFloat("product_price"));
+		product.setProduct_stor(rs.getInt("product_stor"));
 		product.setPrice_unit(rs.getString("price_unit"));
 		product.setSale_state(rs.getString("sale_state"));
 		product.setProduct_desc(rs.getString("product_desc"));
@@ -83,10 +86,10 @@ public class ManageProduct { //implements ModelDriven<Product>
 		return "success";
 	}
 	public String insertProduct() throws Exception{
-		 String sql="INSERT INTO shopping_sales(product_name,product_price,price_unit,sale_state,product_desc,factory_id,product_unit) "
-	        		+ "VALUES (\'"+product_name+"\',"+product_price+",\'"
-				 +price_unit+"\',\'"+sale_state+"\',\'"+product_desc+"\',"+factory_id+"\',\'"+product_unit+"\')";
-			Connection conn= MySqlConn.getConnection();
+		 String sql="INSERT INTO shopping_sales(product_name,product_price,product_stor,price_unit,sale_state,product_desc,factory_id,product_unit) "
+	        		+ "VALUES (\'"+product_name+"\',"+product_price+","+product_stor+",\'"
+				 +price_unit+"\',\'"+sale_state+"\',\'"+product_desc+"\',"+factory_id+",\'"+product_unit+"\')";
+		 Connection conn= MySqlConn.getConnection();
 			Statement st = (Statement) conn.createStatement();
 			st.executeUpdate(sql);
 			MySqlConn.realseConn(conn, st);
@@ -94,7 +97,7 @@ public class ManageProduct { //implements ModelDriven<Product>
 		return "success";
 	}
 	public String updateProduct() throws Exception{
-		String sql="UPDATE shopping_sales   SET product_name=\'"+product_name+"\',"+"product_price="+product_price+","
+		String sql="UPDATE shopping_sales   SET product_name=\'"+product_name+"\',"+"product_price="+product_price+","+"product_stor="+product_stor+","
 				+ "price_unit=\'"+price_unit+"\',"+"product_desc=\'"+product_desc+"\',product_unit=\'"+product_unit
 						+ "\'  WHERE product_id="+product_id;
 		Connection conn= MySqlConn.getConnection();
@@ -127,7 +130,10 @@ public class ManageProduct { //implements ModelDriven<Product>
 	public void setProduct_price(Float product_price) {
 		this.product_price = product_price;
 	}
-
+	
+	public void setProduct_stor(int product_stor) {
+		this.product_stor = product_stor;
+	}
 	public void setPrice_unit(String price_unit) {
 		this.price_unit = price_unit;
 	}
@@ -139,7 +145,10 @@ public class ManageProduct { //implements ModelDriven<Product>
 	public void setSale_state(String sale_state) {
 		this.sale_state = sale_state;
 	}
-
+	
+	public void setProduct_unit(String product_unit) {
+		this.product_unit = product_unit;
+	}
 	public void setFactory_id(int factory_id) {
 		this.factory_id = factory_id;
 	}

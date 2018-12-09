@@ -92,7 +92,8 @@ public class ManageProductImg {
 		if(!savedir.exists()) {savedir.mkdir();}
 		for(int i=0;i<file.length;i++){
 			FileInputStream proimgis = new FileInputStream(file[i]);
-			FileOutputStream proimgos = new FileOutputStream(savedir.getAbsolutePath() +"/"+cust_acct+"_"+i+".jpg");
+			FileOutputStream proimgos = new FileOutputStream(savedir.getAbsolutePath() +"/"+cust_acct+"-"+i+".jpg");
+			
 			if(file[i].exists()){
 				byte[] readimg = new byte[1024];
 				int bytenum =0;

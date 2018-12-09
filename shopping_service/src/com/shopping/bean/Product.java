@@ -5,6 +5,7 @@ public class Product {
 	private int product_id;
 	private String product_name;
 	private Float product_price;
+	private int product_stor;
 	private String price_unit;
 	private String product_desc ;
 	private String sale_state;
@@ -28,6 +29,13 @@ public class Product {
 	}
 	public void setProduct_price(Float product_price) {
 		this.product_price = product_price;
+	}
+	
+	public int getProduct_stor() {
+		return product_stor;
+	}
+	public void setProduct_stor(int product_stor) {
+		this.product_stor = product_stor;
 	}
 	public String getPrice_unit() {
 		return price_unit;
